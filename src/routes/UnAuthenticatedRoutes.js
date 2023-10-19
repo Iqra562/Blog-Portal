@@ -6,6 +6,7 @@ import PostDetail  from "../pages/PostDetail";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { UnAuthenticatedRoutesNames } from "../utilities/util.constant";
+import CategoryDetail from "../pages/CategoryDetail";
 // import Home2 from "../pages/Home2";
 
 
@@ -16,6 +17,7 @@ function UnAuthenticatedRoutes(){
 
         <Route  path={UnAuthenticatedRoutesNames.HOME} element={<Home/>}/>
         <Route path={UnAuthenticatedRoutesNames.POST_DETAIL} element ={<PostDetail/>} />
+        <Route path= {UnAuthenticatedRoutesNames.CATEGORY_DETAIL} element={<CategoryDetail/>}/>
         <Route path={UnAuthenticatedRoutesNames.LOGIN} element={<Login/>}/>
         <Route path={UnAuthenticatedRoutesNames.REGISTER} element={<Register/>}/>
             

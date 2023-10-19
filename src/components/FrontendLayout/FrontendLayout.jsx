@@ -8,7 +8,7 @@ import  {useQuery} from "react-query";
 import {CategoriesServices} from "../../services/categories.services";
 function FrontendLayout() {
   const {data: categoriesData} = useQuery("getCategories", CategoriesServices.getCategories);
-  console.log(categoriesData);
+  // console.log(categoriesData);
   const getCategories = useMemo(()=>categoriesData?.data?.results, [categoriesData?.data?.results]);
   const ShowFiveCategories  = useMemo(()=>categoriesData?.data?.results?.splice(0,5),[categoriesData?.data?.results]
   );
@@ -91,10 +91,13 @@ function FrontendLayout() {
                 <div className="col-lg-6">
                   <ul className="list-unstyled">
                     {getCategories?.length>0 &&
-                       getCategories?.map((singleCategory,index)=>(                    <li>
-                      <a href="#"> 
+                       getCategories?.map((singleCategory,index)=>(            
+                      <li>
+                      <Link to={UnAuthenticatedRoutesNames.CATEGORY_DETAIL.replace(":id",
+                      singleCategory.cat_id
+                      )}> 
                       {index+1}-{singleCategory.cat_title}
-                      </a>
+                      </Link>
                     </li>
                    )) 
                   }
@@ -104,15 +107,6 @@ function FrontendLayout() {
 
           
               </div>
-            </div>
-
-            <div className="well">
-              <h4>Side Widget Well</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Inventore, perspiciatis adipisci accusamus laudantium odit
-                aliquam repellat tempore quos aspernatur vero.
-              </p>
             </div>
           </div>
         </div>
