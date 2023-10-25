@@ -93,7 +93,7 @@ function FrontendLayout() {
             <Outlet />
           </div>
 
-          <div className="col-md-4">
+          <div className="col-md-4 sticky-top ">
             <div className="well">
               <form onSubmit={onSearchSubmitHandler}>
               <h4>Post Search</h4>

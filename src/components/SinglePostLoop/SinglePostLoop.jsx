@@ -14,7 +14,7 @@ function  SinglePostLoop({ singlePost }){
                 )
             );
             }}>
-                {singlePost?.id}
+                {singlePost?.post_title}
             </a>
         </h2>
         <p className="lead"> by <a href="#">{singlePost?.post_author} </a>

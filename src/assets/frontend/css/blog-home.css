@@ -11,3 +11,9 @@ body {
 footer {
     margin: 50px 0;
 }
+.col-md-4.sticky-top {
+    top: 100px; /* Adjust this value to set the desired distance from the top */
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+  }
+  

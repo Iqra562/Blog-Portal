@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { UnAuthenticatedRoutesNames } from "../utilities/util.constant";
 import CategoryDetail from "../pages/CategoryDetail";
+import SearchDetail from "../pages/SearchDetail";
 // import Home2 from "../pages/Home2";
 
 
