@@ -20,7 +20,7 @@ function UnAuthenticatedRoutes(){
         <Route path= {UnAuthenticatedRoutesNames.CATEGORY_DETAIL} element={<CategoryDetail/>}/>
         <Route path={UnAuthenticatedRoutesNames.LOGIN} element={<Login/>}/>
         <Route path={UnAuthenticatedRoutesNames.REGISTER} element={<Register/>}/>
-            
+        <Route path={UnAuthenticatedRoutesNames.SEARCH_DETAIL} element={<SearchDetail/>}/>
       
     
         </Route>

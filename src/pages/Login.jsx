@@ -12,7 +12,7 @@ function Login() {
   const onFinish = async (values) => {
     await loginRequest(values,{
       onSuccess: (data)=>{
-        const token = data?.data?.results.token;
+        const token = data?.data?.results?.token;
         AuthUtils.saveToken(token);
         window.location.reload(true);
       }

@@ -1,17 +1,38 @@
-import React,{useMemo} from "react";
+import React,{useMemo, useState} from "react";
 import "../../assets/frontend/css/bootstrap.min.css";
 import "../../assets/frontend/css/blog-home.css";
 import { UnAuthenticatedRoutesNames } from "../../utilities/util.constant";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet ,useNavigate} from "react-router-dom";
 import {AuthUtils} from "../../utilities/Auth.util";
 import  {useQuery} from "react-query";
 import {CategoriesServices} from "../../services/categories.services";
+import { notification } from "antd";
+
 function FrontendLayout() {
+  const [searchInput,setSearchInput]= useState(null);
+  const navigate = useNavigate();
   const {data: categoriesData} = useQuery("getCategories", CategoriesServices.getCategories);
   // console.log(categoriesData);
   const getCategories = useMemo(()=>categoriesData?.data?.results, [categoriesData?.data?.results]);
-  const ShowFiveCategories  = useMemo(()=>categoriesData?.data?.results?.splice(0,5),[categoriesData?.data?.results]
+  const ShowFiveCategories  = useMemo(()=>categoriesData?.data?.results?.splice(1,5),[categoriesData?.data?.results]
   );
+  const onSearchSubmitHandler = (event)=>{
+    event.preventDefault();
+    if(!searchInput ){
+      notification.warning({
+        message :"input is empty",
+        placement:"topRight",
+      })
+
+    }
+    navigate(
+      UnAuthenticatedRoutesNames.SEARCH_DETAIL.replace(
+        ":searchDetail",
+        searchInput
+      )
+    )
+
+  }
   return (
     <>
       <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -74,19 +95,24 @@ function FrontendLayout() {
 
           <div className="col-md-4">
             <div className="well">
-              <h4>Blog Search</h4>
+              <form onSubmit={onSearchSubmitHandler}>
+              <h4>Post Search</h4>
               <div className="input-group">
-                <input type="text" className="form-control" />
+                <input type="text" className="form-control" onChange={(event)=>{
+                  event.preventDefault();
+                  setSearchInput(event.target.value)
+                }} />
                 <span className="input-group-btn">
                   <button className="btn btn-default" type="button">
                     <span className="glyphicon glyphicon-search"></span>
                   </button>
                 </span>
               </div>
+              </form>
             </div>
 
             <div className="well">
-              <h4>Blog Categories</h4>
+              <h4>Post  Categories</h4>
               <div className="row">
                 <div className="col-lg-6">
                   <ul className="list-unstyled">

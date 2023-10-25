@@ -5,6 +5,7 @@ export  const  UnAuthenticatedRoutesNames = {
     CATEGORY_DETAIL : "/category/:id",
     LOGIN :"/login",
     REGISTER:"/register",
+    SEARCH_DETAIL:"/search/:searchDetail",
     
 };
 export const AuthUtilConstant = {
