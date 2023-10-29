@@ -19,7 +19,7 @@ const antDesignConfig = {
   token: { colorPrimary: "#00b96b"},
 };
 function App() {
-  const authenticated = false;
+  const authenticated = true;
   return (
     <ConfigProvider theme={antDesignConfig}>
   <QueryClientProvider client = {queryClient}>
