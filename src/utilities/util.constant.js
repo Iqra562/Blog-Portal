@@ -8,6 +8,11 @@ export  const  UnAuthenticatedRoutesNames = {
     SEARCH_DETAIL:"/search/:searchDetail",
     
 };
+export const AuthenticatedRoutesNames = {
+    HOME :"/",
+    CATEGORIES:"/categories",
+
+}
 export const AuthUtilConstant = {
     USER_TOKEN : "token",
 };

@@ -3,6 +3,7 @@ import { Button, Form, Input, Typography } from "antd";
 import {UserServices} from "../services/user.service";
 import {AuthUtils} from "../utilities/Auth.util";
 import {useMutation} from "react-query";
+import { AuthenticatedRoutesNames } from "../utilities/util.constant";
 
 
 const { Title } = Typography;
@@ -15,6 +16,8 @@ function Login() {
         const token = data?.data?.results?.token;
         AuthUtils.saveToken(token);
         window.location.reload(true);
+            window.location.reload(true);
+
       }
     });
   };

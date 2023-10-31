@@ -4,6 +4,7 @@ import {QueryClientProvider , QueryClient} from 'react-query';
 import AuthenticatedRoutes from "./routes/AuthenticatedRoutes";
 import UnAuthenticatedRoutes from "./routes/UnAuthenticatedRoutes";
 import {ConfigProvider} from "antd";
+import { AuthService } from "./services/auth.service";
 const queryClient = new QueryClient({
 defaultOptions : {
   queries : {
@@ -19,16 +20,23 @@ const antDesignConfig = {
   token: { colorPrimary: "#00b96b"},
 };
 function App() {
-  const authenticated = false;
+    const authenticated = AuthService.IsUserLoggedIn(); 
   return (
     <ConfigProvider theme={antDesignConfig}>
-  <QueryClientProvider client = {queryClient}>
-<BrowserRouter>
-{authenticated ? (<AuthenticatedRoutes/>):(<UnAuthenticatedRoutes/>) }
-</BrowserRouter>
-  </QueryClientProvider>
-  </ConfigProvider>
+      <QueryClientProvider client={queryClient}>
+        <div className="app">
+          <BrowserRouter>
+            {authenticated ? (
+              <AuthenticatedRoutes />
+            ) : (
+              <UnAuthenticatedRoutes />
+            )}
+          </BrowserRouter>
+        </div>
+      </QueryClientProvider>
+    </ConfigProvider>
   );
+
 }
 
 export default App;
