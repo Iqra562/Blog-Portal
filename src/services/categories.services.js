@@ -13,7 +13,13 @@ const getCategoryById= (categoryId)=>{
     return response;
 
 }
+const deleteCategoryById = (categoryId)=>{
+    const response = ApiService.delete(
+        `${CategoriesServiceUrls.getCategoriesURL}/${categoryId}`
+    )
+}
 export const CategoriesServices = {
     getCategories,
-    getCategoryById
+    getCategoryById,
+    deleteCategoryById
 }

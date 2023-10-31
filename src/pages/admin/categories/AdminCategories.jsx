@@ -1,16 +1,37 @@
 import {React,useMemo} from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { Button,Col,
 Modal,Row,Table,message } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {  useNavigate } from "react-router-dom";
 import { CategoriesServices } from "../../../services/categories.services";
 import {AuthenticatedRoutesNames} from "../../../utilities/util.constant";
-  function AdminCategories(){
+const {confirm} = Modal;
+function AdminCategories(){
     const navigate = useNavigate();
-    const {data: categoryData,isLoading:categoryLoading} = useQuery("categories",()=>CategoriesServices.getCategories());
-const catData = useMemo(
-    ()=>categoryData?.data?.results,[categoryData?.data?.results]
-)
+    const {data: categoryData,isLoading:categoryLoading, refetch:categoryRefresh} = useQuery("categories",()=>CategoriesServices.getCategories());    
+    const catData = useMemo(
+    ()=>categoryData?.data?.results,[categoryData?.data?.results]);
+    const [messageApi,contextHolder] = message.useMessage();
+    const {
+      mutateAsync : deleteCategoryRequest, isLoading:categoryDeletingLoader,
+    }=useMutation(CategoriesServices.deleteCategoryById)
+    const deleteCategory = (singleCategory)=>{
+    const {cat_id : categoryId} = singleCategory;
+     confirm({
+      title:"Do you want to delete this category?",
+      icon:<ExclamationCircleOutlined />,
+      onOk(){
+        deleteCategoryRequest(categoryId,{
+          onSuccess: ()=>{
+            messageApi.success("category is deleted duccessfully!");
+            categoryRefresh();
+          }
+        })
+
+      }
+     })
+}
 const columns = [
   {
     title:"Id",
@@ -18,12 +39,52 @@ const columns = [
     render:(singleData)=>{
       return singleData.cat_id; 
     },
-  }
-]
+  },
+  {
+    title :"Category Title",
+    key:"categoryTitle",
+    render :(singleData)=>{
+      return singleData.cat_title;
+
+    }
+  },
+  {
+    title :"Updated Date",
+    key:"updatedDate",
+    render:(singleData)=>{
+     return singleData.updated_at;
+
+    },
+  },
+  {
+    title:"Created At",
+    key:"created_at",
+    render:(singleData)=>{
+  return singleData.created_at;
+    },
+  },
+  {
+    title:"Edit",
+    key:"edit",
+    render:()=>{
+      return <Button type="primary">Edit</Button>
+
+    },
+  },
+  {
+    title :"Delete",
+    key:"delete",
+    render :(singleCategory)=>{
+      return(
+  <Button type="default" onClick={()=> deleteCategory(singleCategory)}>Delete</Button>
+      );
+    },
+  },
+];
 
     return(
         <div>
-           {/* {contextHolder} */}
+           {contextHolder}
            <Row    type="flex"
         justify="space-between"
         align="middle"
