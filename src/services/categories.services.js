@@ -13,13 +13,24 @@ const getCategoryById= (categoryId)=>{
     return response;
 
 }
+const addCategory = (payload)=>{
+    const response = ApiService.post(
+        CategoriesServiceUrls.getCategoriesURL,
+        payload
+    );
+    return response; 
+
+
+};
 const deleteCategoryById = (categoryId)=>{
     const response = ApiService.delete(
         `${CategoriesServiceUrls.getCategoriesURL}/${categoryId}`
     )
 }
+
 export const CategoriesServices = {
     getCategories,
     getCategoryById,
-    deleteCategoryById
+    deleteCategoryById,
+    addCategory,
 }

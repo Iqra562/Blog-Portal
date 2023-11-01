@@ -13,8 +13,7 @@ function AdminCategories(){
     const catData = useMemo(
     ()=>categoryData?.data?.results,[categoryData?.data?.results]);
     const [messageApi,contextHolder] = message.useMessage();
-    const {
-      mutateAsync : deleteCategoryRequest, isLoading:categoryDeletingLoader,
+    const { mutateAsync : deleteCategoryRequest, isLoading: categoryDeletingLoader,
     }=useMutation(CategoriesServices.deleteCategoryById)
     const deleteCategory = (singleCategory)=>{
     const {cat_id : categoryId} = singleCategory;
@@ -26,8 +25,8 @@ function AdminCategories(){
           onSuccess: ()=>{
             messageApi.success("category is deleted duccessfully!");
             categoryRefresh();
-          }
-        })
+          },
+        });
 
       }
      })
@@ -111,7 +110,7 @@ const columns = [
           </Button>
         </Col>
            </Row>
-           <Table dataSource={catData} columns={columns}/>
+           <Table  loading={categoryLoading || categoryDeletingLoader} dataSource={catData} columns={columns}/>
         </div>
     )
 }
