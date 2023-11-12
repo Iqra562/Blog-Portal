@@ -13,6 +13,7 @@ function AuthenticatedRoutes(){
                 <Route path={AuthenticatedRoutesNames.HOME} element={<AdminHome/>}/>
                  <Route path={AuthenticatedRoutesNames.CATEGORIES }element={<AdminCategories/>}/>
                  <Route path={AuthenticatedRoutesNames.CATEGORY_ADD} element={<AddEditCategory/>}/>
+                 <Route path={AuthenticatedRoutesNames.CATEGORY_EDIT} element={<AddEditCategory/>}/>
             </Route>
         </Routes>
     )

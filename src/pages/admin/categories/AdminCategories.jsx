@@ -9,7 +9,7 @@ import {AuthenticatedRoutesNames} from "../../../utilities/util.constant";
 const {confirm} = Modal;
 function AdminCategories(){
     const navigate = useNavigate();
-    const {data: categoryData,isLoading:categoryLoading, refetch:categoryRefresh} = useQuery("categories",()=>CategoriesServices.getCategories());    
+    const {data: categoryData,isLoading:categoryLoading, refetch: categoryRefresh} = useQuery("categories",()=>CategoriesServices.getCategories());    
     const catData = useMemo(
     ()=>categoryData?.data?.results,[categoryData?.data?.results]);
     const [messageApi,contextHolder] = message.useMessage();
@@ -65,8 +65,11 @@ const columns = [
   {
     title:"Edit",
     key:"edit",
-    render:()=>{
-      return <Button type="primary">Edit</Button>
+    render:(singleCategory)=>{
+      return <Button type="primary" onClick={()=>navigate(AuthenticatedRoutesNames.CATEGORY_EDIT.replace(
+        ":id",
+        singleCategory.cat_id
+      ))}>Edit</Button>
 
     },
   },
