@@ -12,9 +12,15 @@ function AddEditCategory(){
     const navigate = useNavigate();
     const [messageApi, contextHolder] = useMessage();
     const {mutateAsync:addCategoryRequest , isLoading:addCategoryLoader} = useMutation(CategoriesServices.addCategory);
+const {mutateAsync:updateCategoryRequest, isLoading: updateCategoryLoader,
+} = useMutation((payload)=>{
+  CategoriesServices.updateCategory(categoryId,payload)
+});
+
 
 const [form] = Form.useForm();
 const {data: editCategoryData, isLoading:editCategoryLoader} = useQuery(["category_id",categoryId],()=>CategoriesServices.getCategoryById(categoryId));
+
 useEffect(()=>{
     if(categoryId){
         setEditMode(true);
@@ -30,6 +36,16 @@ form.setFieldValue({
 },[editCategoryData])
 
 const onFinish = (values)=>{
+    if(editMode){
+        updateCategoryRequest(values,{
+            onSuccess: ()=>{
+                messageApi.success("category is update!");
+                setTimeout(()=>{
+                    navigate(AuthenticatedRoutesNames.CATEGORIES);
+                },100)
+            }
+        })
+    }else{
 addCategoryRequest(values,{
     onSuccess: ()=>{
         messageApi.success("category is created successfully");
@@ -40,6 +56,7 @@ addCategoryRequest(values,{
 }
 
 )
+    }
 }
 
     return(  
@@ -56,7 +73,7 @@ addCategoryRequest(values,{
             <Input placeholder = "Category Title"/>
         </Form.Item>
         <Form.Item>
-            <Button type="primary" htmlType="submit" loading={addCategoryLoader || editCategoryLoader}>{editMode ? "Update" : "Create"}</Button>
+            <Button type="primary" htmlType="submit" loading={addCategoryLoader || editCategoryLoader || updateCategoryLoader}>{editMode ? "Update" : "Create"}</Button>
         </Form.Item>
     </Form>
    </div>

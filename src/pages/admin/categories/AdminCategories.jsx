@@ -6,6 +6,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import {  useNavigate } from "react-router-dom";
 import { CategoriesServices } from "../../../services/categories.services";
 import {AuthenticatedRoutesNames} from "../../../utilities/util.constant";
+import { UtilService } from "../../../utilities/util.service";
 const {confirm} = Modal;
 function AdminCategories(){
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ const columns = [
     title :"Updated Date",
     key:"updatedDate",
     render:(singleData)=>{
-     return singleData.updated_at;
+     return UtilService.convertDateToMyFormat(singleData.updated_at);
 
     },
   },
@@ -59,7 +60,7 @@ const columns = [
     title:"Created At",
     key:"created_at",
     render:(singleData)=>{
-  return singleData.created_at;
+  return UtilService.convertDateToMyFormat(singleData.created_at);
     },
   },
   {

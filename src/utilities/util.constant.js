@@ -12,6 +12,7 @@ export const AuthenticatedRoutesNames = {
     CATEGORIES:"/categories",
     CATEGORY_ADD:"/category/add",
     CATEGORY_EDIT:"/category/edit/:id",
+    POSTS:"/posts",
 
 }
 export const AuthUtilConstant = {
