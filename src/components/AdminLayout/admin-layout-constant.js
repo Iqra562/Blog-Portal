@@ -32,7 +32,7 @@ export const sidebarItems = [
 
   {
     icon: <DesktopOutlined />,
-    label: <Link to="/">Posts</Link>,
+    label: <Link to={AuthenticatedRoutesNames.POSTS}>Posts</Link>,
     key: "posts",
   },
 

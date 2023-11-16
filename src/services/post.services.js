@@ -10,7 +10,13 @@ const getPostById = (postId)=>{
 const response = ApiService.get(`${PostServiceUrl.getPosts}/${postId}`);
 return response;
 }
+const deletePostById= (postId)=>{
+    const response = ApiService.delete(`${PostServiceUrl.getPosts}/${postId}`);
+    return response;
+
+}
 export const PostServices = {
     getPosts,
     getPostById,
+    deletePostById
 };

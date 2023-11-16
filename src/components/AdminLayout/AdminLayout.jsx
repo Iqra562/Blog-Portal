@@ -59,7 +59,7 @@ function AdminLayout() {
             textAlign: "center",
           }}
         >
-          Squadcodersdev ©{new Date().getFullYear()} Created by Muzammil
+          AdminPanel ©{new Date().getFullYear()} Created by Unknown
         </Footer>
       </Layout>
     </Layout>

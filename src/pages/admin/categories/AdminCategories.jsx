@@ -7,6 +7,7 @@ import {  useNavigate } from "react-router-dom";
 import { CategoriesServices } from "../../../services/categories.services";
 import {AuthenticatedRoutesNames} from "../../../utilities/util.constant";
 import { UtilService } from "../../../utilities/util.service";
+import GridView from "../../../components/GridView/GridView";
 const {confirm} = Modal;
 function AdminCategories(){
     const navigate = useNavigate();
@@ -86,36 +87,24 @@ const columns = [
 ];
 
     return(
-        <div>
-           {contextHolder}
-           <Row    type="flex"
-        justify="space-between"
-        align="middle"
-        style={{ marginBottom: "20px" }}>
+      <>
+         {contextHolder}
+      <GridView 
+      loading={categoryLoading || categoryDeletingLoader} 
+       dataSource={catData}
+         columns={columns} 
+          heading="Categories" 
+           addBtnText="+ Add Category"
+            addBtnClick={()=>{
+        navigate(AuthenticatedRoutesNames.CATEGORY_ADD);
+      }}
 
-<Col>
-          <h3
-            style={{
-              marginBottom: "0",
-              marginTop: "0",
-            }}
-          >
-            Categories
-          </h3>
-        </Col>
-        <Col>
-          <Button
-            type="primary"
-            onClick={() => {
-                navigate(AuthenticatedRoutesNames.CATEGORY_ADD);
-            }}
-          >
-            + Add Category
-          </Button>
-        </Col>
-           </Row>
-           <Table  loading={categoryLoading || categoryDeletingLoader} dataSource={catData} columns={columns}/>
-        </div>
+      
+      />
+
+
+
+      </>
     )
 }
-export default AdminCategories
+export default AdminCategories;

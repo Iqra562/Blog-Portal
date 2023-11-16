@@ -4,6 +4,7 @@ import {Route,Routes} from "react-router-dom";
 import AdminLayout from "../components/AdminLayout/AdminLayout";
 import AdminHome from "../pages/admin/AdminHome";
 import AdminCategories from "../pages/admin/categories/AdminCategories";
+import AdminPosts from "../pages/admin/posts/AdminPosts";
 import AddEditCategory from '../pages/admin/categories/AddEditCategory';
 
 function AuthenticatedRoutes(){
@@ -14,7 +15,7 @@ function AuthenticatedRoutes(){
                  <Route path={AuthenticatedRoutesNames.CATEGORIES }element={<AdminCategories/>}/>
                  <Route path={AuthenticatedRoutesNames.CATEGORY_ADD} element={<AddEditCategory/>}/>
                  <Route path={AuthenticatedRoutesNames.CATEGORY_EDIT} element={<AddEditCategory/>}/>
-                 {/* <Route path={AuthenticatedRoutesNames.POSTS}  element={<AdminPosts/>}/> */}
+                  <Route path={AuthenticatedRoutesNames.POSTS}  element={<AdminPosts/>}/>
             </Route>
         </Routes>
     )
