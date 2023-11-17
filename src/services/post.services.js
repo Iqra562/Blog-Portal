@@ -15,8 +15,13 @@ const deletePostById= (postId)=>{
     return response;
 
 }
+const addPost = (payload)=>{
+ const response = ApiService.post(PostServiceUrl.getPosts,payload);
+ return response;
+}
 export const PostServices = {
     getPosts,
     getPostById,
-    deletePostById
+    deletePostById,
+    addPost,
 };

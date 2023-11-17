@@ -6,12 +6,15 @@ import GridView from "../../../components/GridView/GridView";
 import { message,Button } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { UtilService } from "../../../utilities/util.service";
+import { useNavigate } from "react-router-dom";
+import { AuthenticatedRoutesNames } from "../../../utilities/util.constant";
 const {confirm} = Modal;
 function AdminPosts(){
 
     const  {data: postData, isLoading : getPostLoader, refetch:refetchPostData} = useQuery("posts", PostServices.getPosts);
     const postDataTable= useMemo( () => postData?.data?.results,[postData?.data?.results]);
-    const {mutateAsync:deletePostRequest, isLoading:deletePostLoader}=useMutation(PostServices.deletePostById);
+    const {mutateAsync:deletePostRequest, isLoading:deletePostLoader}=useMutation(PostServices.deletePostById);//shortHand
+      // useMutation((postId) => PostServices.deletePostById(postId));  
     const deletePostFunction = (postId)=>{
       confirm({
         title: "Do you want to delete post?",
@@ -28,6 +31,7 @@ function AdminPosts(){
      }
      )
     }
+    const navigate= useNavigate();
    const [messageApi , contextHolder] = message.useMessage();
 
     const columns=[
@@ -92,7 +96,7 @@ return <Button type="Default" onClick={()=> deletePostFunction(singleData.id)}>D
 return(
 <>
 {contextHolder}
-<GridView loading={getPostLoader} dataSource={postDataTable} columns={columns} addBtnText="+ Add Post"/>
+<GridView loading={getPostLoader} dataSource={postDataTable} columns={columns} addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_POST)} addBtnText="+ Add Post"/>
 </>
 
 )
