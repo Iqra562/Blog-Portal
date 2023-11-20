@@ -19,7 +19,7 @@ const addPost = (payload)=>{
  const response = ApiService.post(PostServiceUrl.getPosts,payload);
  return response;
 }
-const updatePost = (postId, payload) => {
+const updatePostById = (postId, payload) => {
     const response = ApiService.put(
       `${PostServiceUrl.getPosts}/${postId}`,
       payload
@@ -31,5 +31,5 @@ export const PostServices = {
     getPostById,
     deletePostById,
     addPost,
-    updatePost
+    updatePostById
 };
