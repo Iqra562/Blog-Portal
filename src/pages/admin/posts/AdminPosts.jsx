@@ -8,9 +8,10 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { UtilService } from "../../../utilities/util.service";
 import { useNavigate } from "react-router-dom";
 import { AuthenticatedRoutesNames } from "../../../utilities/util.constant";
+import { CategoriesServices } from "../../../services/categories.services";
 const {confirm} = Modal;
 function AdminPosts(){
-
+    const {data:categoryData} = useQuery("category",()=>CategoriesServices.getCategories())
     const  {data: postData, isLoading : getPostLoader, refetch:refetchPostData} = useQuery("posts", PostServices.getPosts);
     const postDataTable= useMemo( () => postData?.data?.results,[postData?.data?.results]);
     const {mutateAsync:deletePostRequest, isLoading:deletePostLoader}=useMutation(PostServices.deletePostById);//shortHand
@@ -31,6 +32,11 @@ function AdminPosts(){
      }
      )
     }
+  //  const  getCategoryById = (categoryId)=>{
+  //     const category = categoryData?.data?.find((cat)=>cat.cat_id === categoryId);
+  //     return category?.cat_title;
+
+  //  }
     const navigate= useNavigate();
    const [messageApi , contextHolder] = message.useMessage();
 
@@ -53,6 +59,12 @@ function AdminPosts(){
  return singleData.post_author;
         }
       },
+//       {
+//         title:"Post Category",
+//         render:(singleData)=>{
+//  return getCategoryById(singleData.post_category_id);
+//         }
+//       },
       {
         title:"Post Image",
         render:(singleData)=>{
@@ -81,7 +93,7 @@ return UtilService.convertDateToMyFormat(singleData.updated_at);
       {
         title:"Edit",
         render:(singleData)=>{
-return <Button type="primary">Edit</Button>
+return <Button type="primary" onClick={()=>navigate(AuthenticatedRoutesNames.EDIT_POST.replace(":postId",singleData.id)) }>Edit</Button>
         },
       },
       {
@@ -96,7 +108,7 @@ return <Button type="Default" onClick={()=> deletePostFunction(singleData.id)}>D
 return(
 <>
 {contextHolder}
-<GridView loading={getPostLoader} dataSource={postDataTable} columns={columns} addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_POST)} addBtnText="+ Add Post"/>
+<GridView loading={getPostLoader} dataSource={postDataTable}  columns={columns} addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_POST)} addBtnText="+ Add Post"/>
 </>
 
 )

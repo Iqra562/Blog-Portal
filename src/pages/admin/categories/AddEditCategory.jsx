@@ -12,8 +12,7 @@ function AddEditCategory(){
     const navigate = useNavigate();
     const [messageApi, contextHolder] = useMessage();
     const {mutateAsync:addCategoryRequest , isLoading:addCategoryLoader} = useMutation(CategoriesServices.addCategory);
-const {mutateAsync:updateCategoryRequest, isLoading: updateCategoryLoader,
-} = useMutation((payload)=>{
+const {mutateAsync:updateCategoryRequest, isLoading: updateCategoryLoader} = useMutation((payload)=>{
   CategoriesServices.updateCategory(categoryId,payload)
 });
 
