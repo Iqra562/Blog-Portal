@@ -14,7 +14,10 @@ export const AuthenticatedRoutesNames = {
     CATEGORY_EDIT:"/category/edit/:id",
     POSTS:"/posts",
     CREATE_POST:"/post/create",
-    EDIT_POST:"/post/edit/:postId"
+    EDIT_POST:"/post/edit/:postId",
+    USERS:"/users",
+    CREATE_USER:"/user/create",
+    EDIT_USER:"/user/edit/:userId",
 
 }
 export const AuthUtilConstant = {
