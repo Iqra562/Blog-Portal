@@ -7,6 +7,7 @@ import AdminCategories from "../pages/admin/categories/AdminCategories";
 import AdminPosts from "../pages/admin/posts/AdminPosts";
 import AddEditCategory from '../pages/admin/categories/AddEditCategory';
 import AddEditPost from '../pages/admin/posts/AddEditPost';
+import Users from '../pages/admin/users/Users';
 
 function AuthenticatedRoutes(){
     return (
@@ -19,6 +20,7 @@ function AuthenticatedRoutes(){
                  <Route path={AuthenticatedRoutesNames.POSTS}  element={<AdminPosts/>}/>
                  <Route path={AuthenticatedRoutesNames.CREATE_POST} element={<AddEditPost/>}/>
                 <Route path={AuthenticatedRoutesNames.EDIT_POST} element={<AddEditPost/>}/>
+                <Route path={AuthenticatedRoutesNames.USERS} element={<Users/>}/>
             </Route>
         </Routes>
     )
