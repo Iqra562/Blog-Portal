@@ -108,7 +108,7 @@ return <Button type="Default" onClick={()=> deletePostFunction(singleData.id)}>D
 return(
 <>
 {contextHolder}
-<GridView loading={getPostLoader} dataSource={postDataTable}  columns={columns} addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_POST)} addBtnText="+ Add Post"/>
+<GridView loading={getPostLoader} dataSource={postDataTable}  columns={columns} heading="Posts" addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_POST)} addBtnText="+ Add Post"/>
 </>
 
 )
