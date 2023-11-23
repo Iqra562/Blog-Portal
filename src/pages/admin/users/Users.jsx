@@ -92,8 +92,8 @@ return singleData.is_online
     }
 },{
     title:"Edit",
-    render:()=>{
-    return    <Button type="primary" >Edit</Button>
+    render:(singleData)=>{
+    return    <Button type="primary" onClick={()=>navigate(AuthenticatedRoutesNames.EDIT_USER.replace(":userId",singleData.user_id)) } >Edit</Button>
 
     }
  },
@@ -107,7 +107,7 @@ return <Button type="Default" onClick={()=>deleteUserFunction(singleData.user_id
 return(
 <div>
 {contextHolder}
-<GridView loading = {usersDataLoader} dataSource={usersDataMemoization} columns={columns} headings="USers"  addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_USER)} addBtnText="+ Add User"/>
+<GridView loading = {usersDataLoader || deleteUserLoader} dataSource={usersDataMemoization} columns={columns} headings="Register User"  addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_USER)} addBtnText="+ Add User"/>
 </div>
 )}
 export default Users;
