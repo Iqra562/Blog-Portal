@@ -1,4 +1,6 @@
 import {create} from "apisauce";
+import { AuthUtils } from "./Auth.util";
+import { AuthService } from "../services/auth.service";
 const ApiSauceInstance = create({
     baseURL: process.env.REACT_APP_API_URL,
 });
@@ -22,6 +24,13 @@ const deleteRequest = (url,queryParams)=>{
      const response =  ApiSauceInstance.delete(url ,queryParams);
      return response;
 }
+ApiSauceInstance.addRequestTransform((request)=>{
+    const authenticated  = AuthService.IsUserLoggedIn();
+    if(authenticated){
+        request.headers["Authorization"] = `Bearer ${AuthService.getUserToken()}`
+
+    }
+})
 export const ApiService= {
     get,
     post,
