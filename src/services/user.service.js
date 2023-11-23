@@ -9,6 +9,9 @@ const login = (data) =>{
 const userServices = {
     getUsers: "/users",
 }
+const userRegister = {
+    getRegister: "/register"
+}
 const  getUsers = ()=>{
     const response = ApiService.get(userServices.getUsers);
     return response;
@@ -18,7 +21,7 @@ const getUserById=(userId)=>{
     return response;
 }
 const addUser = (payload)=>{
-    const response = ApiService.post(userServices.getUsers,payload);
+    const response = ApiService.post(userRegister.getRegister,payload);
     return response;
 }
 const updateUserById = (userId,payload)=>{

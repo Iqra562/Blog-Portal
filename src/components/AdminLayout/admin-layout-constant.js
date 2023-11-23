@@ -38,7 +38,7 @@ export const sidebarItems = [
 
   {
     icon: <UserOutlined />,
-    label: <Link to="/">Users</Link>,
+    label: <Link to={AuthenticatedRoutesNames.USERS}>Users</Link>,
     key: "users",
   },
   {

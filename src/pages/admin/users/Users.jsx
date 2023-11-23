@@ -107,7 +107,7 @@ return <Button type="Default" onClick={()=>deleteUserFunction(singleData.user_id
 return(
 <div>
 {contextHolder}
-<GridView loading = {usersDataLoader} dataSource={usersDataMemoization} columns={columns} headings="USers"  addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_POST)} addBtnText="+ Add Post"/>
+<GridView loading = {usersDataLoader} dataSource={usersDataMemoization} columns={columns} headings="USers"  addBtnClick={()=>navigate(AuthenticatedRoutesNames.CREATE_USER)} addBtnText="+ Add User"/>
 </div>
 )}
 export default Users;
