@@ -18,6 +18,7 @@ export const AuthenticatedRoutesNames = {
     USERS:"/users",
     CREATE_USER:"/user/create",
     EDIT_USER:"/user/edit/:userId",
+    COMMENTS:"/comments",
 
 }
 export const AuthUtilConstant = {

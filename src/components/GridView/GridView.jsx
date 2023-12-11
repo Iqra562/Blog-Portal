@@ -26,12 +26,13 @@ function GridView(props){
           </h3>
         </Col>
         <Col>
-          <Button
+     {  addBtnText    && <Button
             type="primary"
             onClick={addBtnClick}
           >
             {addBtnText}
           </Button>
+}
         </Col>
            </Row>
            <Table  {...otherProps} />

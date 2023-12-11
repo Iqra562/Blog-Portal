@@ -9,6 +9,7 @@ import AddEditCategory from '../pages/admin/categories/AddEditCategory';
 import AddEditPost from '../pages/admin/posts/AddEditPost';
 import Users from '../pages/admin/users/Users';
 import AddEditUser from '../pages/admin/users/AddEditUser';
+import AdminComments from '../pages/admin/comments/AdminComments'
 
 function AuthenticatedRoutes(){
     return (
@@ -24,6 +25,7 @@ function AuthenticatedRoutes(){
                 <Route path={AuthenticatedRoutesNames.USERS} element={<Users/>}/>
                 <Route path={AuthenticatedRoutesNames.CREATE_USER} element={<AddEditUser/>}/>
                 <Route path={AuthenticatedRoutesNames.EDIT_USER} element={<AddEditUser/>}/>
+                <Route path={AuthenticatedRoutesNames.COMMENTS} element = {<AdminComments/>}/>
             </Route>
         </Routes>
     )
