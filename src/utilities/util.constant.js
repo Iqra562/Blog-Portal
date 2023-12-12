@@ -8,17 +8,17 @@ export  const  UnAuthenticatedRoutesNames = {
     
 };
 export const AuthenticatedRoutesNames = {
-    HOME :"/",
-    CATEGORIES:"/categories",
-    CATEGORY_ADD:"/category/add",
-    CATEGORY_EDIT:"/category/edit/:id",
-    POSTS:"/posts",
-    CREATE_POST:"/post/create",
-    EDIT_POST:"/post/edit/:postId",
-    USERS:"/users",
-    CREATE_USER:"/user/create",
-    EDIT_USER:"/user/edit/:userId",
-    COMMENTS:"/comments",
+    HOME :"admin/",
+    CATEGORIES:"/admin/categories",
+    CATEGORY_ADD:"/admin/category/add",
+    CATEGORY_EDIT:"/admin/category/edit/:id",
+    POSTS:"/admin/posts",
+    CREATE_POST:"/admin/post/create",
+    EDIT_POST:"/admin/post/edit/:postId",
+    USERS:"/admin/users",
+    CREATE_USER:"/admin/user/create",
+    EDIT_USER:"/admin/user/edit/:userId",
+    COMMENTS:"/admin/comments",
 
 }
 export const AuthUtilConstant = {

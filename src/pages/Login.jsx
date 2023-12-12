@@ -16,9 +16,8 @@ function Login() {
         const token = data?.data?.results?.token;
         AuthUtils.saveToken(token);
         window.location.reload(true);
-            window.location.reload(true);
-
-      }
+            window.location.href= AuthenticatedRoutesNames.HOME;
+                  }
     });
   };
   return (
