@@ -2,14 +2,43 @@ import React, { useMemo } from "react";
 import { useQuery } from "react-query";
 import GridView from "../../../components/GridView/GridView";
 import { commentService } from "../../../services/comment.service";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import { UtilService } from "../../../utilities/util.service";
+import { useMutation } from "react-query";
+import ApproveComment from "../comments/ApproveComment";
 
 function AdminComments(){
-    const {data:getComments, isLoading : commentsLoader} = useQuery("comments",commentService.getComments);
+    const {data:getComments, isLoading : commentsLoader,refetch:refetchComments} = useQuery("comments",commentService.getComments);
+    const [messageApi,messageHtml] =message.useMessage();
     const commentsMemoization = useMemo(()=>
         getComments?.data?.results,[getComments]
     )
+    // const unApproveBtnHandler = (commentId) => {
+    //   ApproveComment(commentId);
+    // };
+    
+    const {mutateAsync: unApproveCommentRequest,isLoading:unApproveCommentLoader} = useMutation(commentService.unapproveCommentById);
+    const approveBtnHandler = (commentId)=>{
+      unApproveCommentRequest(commentId,
+        {
+          onSuccess:()=>{
+            messageApi.success("unapprove successfully");
+            refetchComments();
+            
+                }
+              })
+    }
+    const {mutateAsync: approveCommentRequest,isLoading:approveCommentLoader} = useMutation(commentService.aproveCommetnById);
+    const unApproveBtnHandler = (commentId)=>{
+      approveCommentRequest(commentId,
+        {
+          onSuccess:()=>{
+            messageApi.success("approved successfully");
+            refetchComments();
+            
+                }
+              })
+    }
  const columns = [
     {
         title:"Comment ID",
@@ -54,13 +83,13 @@ function AdminComments(){
         render: (singleData) => {
           if (singleData?.comment_status === "approved") {
             return (
-              <Button type="primary">
+              <Button type="primary" onClick={()=>approveBtnHandler(singleData?.comment_id)}>
                 {singleData?.comment_status?.toUpperCase()}
               </Button>
             );
           } else {
             return (
-              <Button type="default" danger>
+              <Button type="default" danger   onClick={() => unApproveBtnHandler(singleData?.comment_id)}>
                 {singleData?.comment_status?.toUpperCase()}
               </Button>
             );
@@ -91,7 +120,7 @@ function AdminComments(){
  ]
     return(
         <div>
-            <GridView loading = {commentsLoader} dataSource= {commentsMemoization} columns={columns}  heading="User Comments"/>
+            <GridView loading = {commentsLoader } dataSource= {commentsMemoization} columns={columns}  heading="User Comments"/>
         </div>
     )
 }
