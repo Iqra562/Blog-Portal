@@ -1,7 +1,7 @@
 import React,{useMemo, useState} from "react";
 import "../../assets/frontend/css/bootstrap.min.css";
 import "../../assets/frontend/css/blog-home.css";
-import { UnAuthenticatedRoutesNames } from "../../utilities/util.constant";
+import { AuthenticatedRoutesNames, UnAuthenticatedRoutesNames } from "../../utilities/util.constant";
 import { Link, Outlet ,useNavigate} from "react-router-dom";
 import {AuthUtils} from "../../utilities/Auth.util";
 import  {useQuery} from "react-query";
@@ -51,6 +51,9 @@ function FrontendLayout() {
             </button>
             <Link className="navbar-brand" to={UnAuthenticatedRoutesNames.HOME}>
               Home
+            </Link>
+            <Link className="navbar-brand" to={AuthenticatedRoutesNames.HOME}>
+              Admin
             </Link>
           </div>
 

@@ -2,11 +2,12 @@ import React, { useMemo } from "react";
 import { useQuery } from "react-query";
 import GridView from "../../../components/GridView/GridView";
 import { commentService } from "../../../services/comment.service";
-import { Button, message } from "antd";
+import { Button, message,Modal } from "antd";
 import { UtilService } from "../../../utilities/util.service";
 import { useMutation } from "react-query";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import ApproveComment from "../comments/ApproveComment";
-
+const {confirm} = Modal;
 function AdminComments(){
     const {data:getComments, isLoading : commentsLoader,refetch:refetchComments} = useQuery("comments",commentService.getComments);
     const [messageApi,messageHtml] =message.useMessage();
@@ -16,6 +17,25 @@ function AdminComments(){
     // const unApproveBtnHandler = (commentId) => {
     //   ApproveComment(commentId);
     // };
+    const {mutateAsync:commentDeleteRequest,isLoading:deleteCommentLoader}= useMutation(commentService.deleteCommentById);
+    const deleteCommentHandler =  (commentId)=>{
+     confirm(
+      {
+        title: "Do you want to delete this comment ?",
+        icon: <ExclamationCircleOutlined />,
+        onOk(){
+          commentDeleteRequest(commentId,{
+            onSuccess: () => {
+              refetchComments();
+              messageApi.success("your comment is deleted successfully!");
+            },
+          })
+        }
+        //onCancel({}),
+      }
+     )
+
+    }
     
     const {mutateAsync: unApproveCommentRequest,isLoading:unApproveCommentLoader} = useMutation(commentService.unapproveCommentById);
     const approveBtnHandler = (commentId)=>{
@@ -113,13 +133,14 @@ function AdminComments(){
       {
         title:"Delete",
         key:"delete",
-        render:()=>{
-               return <Button type="default">Delete</Button>
+        render:(singleData)=>{
+               return <Button type="default" onClick={()=>deleteCommentHandler(singleData.comment_id)}>Delete</Button>
         }
       }
  ]
     return(
         <div>
+        {messageHtml}
             <GridView loading = {commentsLoader } dataSource= {commentsMemoization} columns={columns}  heading="User Comments"/>
         </div>
     )
