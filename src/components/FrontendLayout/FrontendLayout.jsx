@@ -80,9 +80,7 @@ function FrontendLayout() {
               <li>
                 <Link to={UnAuthenticatedRoutesNames.LOGIN}>Login</Link>
               </li>
-              <li>
-                <Link to={UnAuthenticatedRoutesNames.REGISTER}>Register</Link>
-              </li>
+            
               </>
             )}
             </ul>

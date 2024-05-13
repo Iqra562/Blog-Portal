@@ -21,7 +21,7 @@ function Login() {
     });
   };
   return (
-    <div>
+    <div className="" style={{marginTop:"10%"}}>
       <Title level={2}>Login</Title>
 
       <Form name="basic" onFinish={onFinish} autoComplete="off">
