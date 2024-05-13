@@ -31,8 +31,10 @@ function Login() {
             {
               require: true,
               message: "Please input your email",
+              value:"examplePassword" 
             },
           ]}
+          initialValue="admin123@"
         >
           <Input placeholder="Type Your Email" />
         </Form.Item>
@@ -45,6 +47,7 @@ function Login() {
               message: "Please input your password",
             },
           ]}
+          initialValue="oscar41@example.net"
         >
           <Input.Password placeholder="Type Your Password" />
         </Form.Item>
