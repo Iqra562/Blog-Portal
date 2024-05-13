@@ -35,7 +35,7 @@ function FrontendLayout() {
   }
   return (
     <>
-      <nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <nav className="navbar navbar-inverse navbar-fixed-top " style={{marginBottom:"30%"}} role="navigation">
         <div className="container">
    <div className="navbar-header">
             <button
@@ -88,7 +88,11 @@ function FrontendLayout() {
         </div>
       </nav>
 
-      <div className="container">
+      <div className="container " style={
+        {
+          marginTop:"3%"
+        }
+      }>
         <div className="row">
           <div className="col-md-8">
             <Outlet />
